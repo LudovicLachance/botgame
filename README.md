@@ -21,3 +21,9 @@
 - Any board games
 
 <h3>Instruction to create a bot and play</h3>
+
+To enter the endless tournament, create a bot 
+implementing the game player you want to play and
+add it to the player list in the game room.
+
+Then make a merge request.
