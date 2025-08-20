@@ -6,6 +6,7 @@ import com.botgame.general.Bot;
 import com.botgame.general.GameBuilder;
 import com.botgame.quarto.Quarto;
 import com.botgame.tictactoe.Tictactoe;
+import com.playground.players.base.BasePlayer;
 import com.playground.players.sooluckyseven.SooLuckySeven;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -64,6 +65,7 @@ public class GamingRoom {
   public static List<Player> getPlayers() {
     List<Player> players = new ArrayList<>();
     players.add(new SooLuckySeven());
+    players.add(new BasePlayer());
     return players;
   }
 }
