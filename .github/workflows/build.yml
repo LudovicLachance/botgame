@@ -32,7 +32,7 @@ jobs:
           git fetch origin main
       - name: Merge main
         run: |
-          git merge origin/main --no-edit
+          git merge -X theirs origin/main --no-edit
       - name: Build with Gradle
         run: |
           ./gradlew build
