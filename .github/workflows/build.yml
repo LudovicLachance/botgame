@@ -40,5 +40,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add score/SCOREBOARD.md
-          git commit -m "Add score/SCOREBOARD.md from Gradle JAR [skip ci]" || echo "No changes to commit"
+          git commit -m "Add score/SCOREBOARD.md from Github CI" || echo "No changes to commit"
           git push
