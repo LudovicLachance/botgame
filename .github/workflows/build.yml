@@ -30,9 +30,12 @@ jobs:
       - name: Fetch main
         run: |
           git fetch origin main
+      - name: Rest score to main
+        run: |
+          it reset --hard origin/main
       - name: Merge main
         run: |
-          git merge -X theirs origin/main --no-edit
+          git merge origin/main --no-edit
       - name: Build with Gradle
         run: |
           ./gradlew build
