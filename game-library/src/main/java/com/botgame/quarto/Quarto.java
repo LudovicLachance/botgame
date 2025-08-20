@@ -2,6 +2,8 @@ package com.botgame.quarto;
 
 import com.botgame.Combination;
 import com.botgame.general.*;
+import com.botgame.general.board.BoardRaw;
+import com.botgame.general.board.BoardView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +12,7 @@ import java.util.List;
  * @see <a href="https://en.wikipedia.org/wiki/Quarto_(board_game)">Quarto (board game)</a>
  */
 public class Quarto implements Game {
-  private final Board<Tower> board = new Board<>(4, 4);
+  private final BoardRaw<Tower> boardRaw = new BoardRaw<>(4, 4);
   private final List<Tower> towers = new ArrayList<>(16);
   private final QuartoBot bot1;
   private final QuartoBot bot2;
@@ -57,13 +59,13 @@ public class Quarto implements Game {
   }
 
   private boolean botTurn(QuartoBot bot) {
-    var move = bot.turn(new BoardView<>(board), List.copyOf(towers));
+    var move = bot.turn(new BoardView<>(boardRaw), List.copyOf(towers));
     var pieceExist = towers.remove(move.tower());
     if (!pieceExist) {
       return false;
     }
 
-    return board.makeMove(move.tower(), move.row(), move.col());
+    return boardRaw.makeMove(move.tower(), move.row(), move.col());
   }
 
   public static class Builder extends GameBuilder {

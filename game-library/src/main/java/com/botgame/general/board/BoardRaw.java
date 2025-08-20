@@ -1,4 +1,4 @@
-package com.botgame.general;
+package com.botgame.general.board;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.Optional;
 /**
  * @see <a href="https://en.wikipedia.org/wiki/Board_game">Board game</a>
  */
-public class Board<Piece extends BoardPiece> {
+public class BoardRaw<Piece extends BoardPiece> implements Board<Piece> {
   private static final String RED = "\u001B[31m";
   private static final String GREEN = "\u001B[32m";
   private static final String RESET = "\u001B[0m";
@@ -15,7 +15,7 @@ public class Board<Piece extends BoardPiece> {
   private final int numberRow;
   private final int numberColumn;
 
-  public Board(int numberRow, int numberColumn) {
+  public BoardRaw(int numberRow, int numberColumn) {
     this.numberRow = numberRow;
     this.numberColumn = numberColumn;
 
@@ -27,26 +27,27 @@ public class Board<Piece extends BoardPiece> {
     }
   }
 
-  public Optional<Piece> get(int row, int column) {
+  @Override
+  public BoardNode<Piece> get(int row, int column) {
     boolean rowTest = row < 0 || row >= numberRow;
     boolean columnTest = column < 0 || column >= numberColumn;
 
     if (rowTest || columnTest) {
-      return Optional.empty();
+      return new BoardNode<>(Optional.empty(), row, column);
     }
 
     var pos = row * numberColumn + column;
     Piece boardPiece = boardPieces.get(pos);
 
     if (boardPiece == null) {
-      return Optional.empty();
+      return new BoardNode<>(Optional.empty(), row, column);
     } else {
-      return Optional.of(boardPieces.get(pos));
+      return new BoardNode<>(Optional.of(boardPieces.get(pos)), row, column);
     }
   }
 
   public boolean makeMove(Piece piece, int row, int column) {
-    if (get(row, column).isEmpty()) {
+    if (get(row, column).piece().isEmpty()) {
       var pos = row * numberColumn + column;
 
       boardPieces.set(pos, piece);
@@ -55,11 +56,12 @@ public class Board<Piece extends BoardPiece> {
     return false;
   }
 
+  @Override
   public List<BoardNode<Piece>> getNodes() {
     List<BoardNode<Piece>> nodes = new ArrayList<>(boardPieces.size());
     for (int r = 0; r < numberRow; r++) {
       for (int c = 0; c < numberColumn; c++) {
-        nodes.add(new BoardNode<>(get(r, c), r, c));
+        nodes.add(get(r, c));
       }
     }
     return nodes;
@@ -83,8 +85,8 @@ public class Board<Piece extends BoardPiece> {
       List<BoardNode<Piece>> hLine = new ArrayList<>();
       List<BoardNode<Piece>> vLine = new ArrayList<>();
       for (int c = 0; c < numberColumn; c++) {
-        hLine.add(new BoardNode<>(get(r, c), r, c));
-        vLine.add(new BoardNode<>(get(c, r), c, r));
+        hLine.add(get(r, c));
+        vLine.add(get(c, r));
       }
       lines.add(hLine);
       lines.add(vLine);
@@ -106,7 +108,7 @@ public class Board<Piece extends BoardPiece> {
       List<BoardNode<Piece>> diagonal = new ArrayList<>();
       int i = 0, j = col;
       while (i < m && j < n) {
-        diagonal.add(new BoardNode<>(get(i, j), i, j));
+        diagonal.add(get(i, j));
         i++;
         j++;
       }
@@ -118,7 +120,7 @@ public class Board<Piece extends BoardPiece> {
       List<BoardNode<Piece>> diagonal = new ArrayList<>();
       int i = row, j = 0;
       while (i < m && j < n) {
-        diagonal.add(new BoardNode<>(get(i, j), i, j));
+        diagonal.add(get(i, j));
         i++;
         j++;
       }
@@ -138,7 +140,7 @@ public class Board<Piece extends BoardPiece> {
       List<BoardNode<Piece>> diagonal = new ArrayList<>();
       int i = 0, j = col;
       while (i < m && j >= 0) {
-        diagonal.add(new BoardNode<>(get(i, j), i, j));
+        diagonal.add(get(i, j));
         i++;
         j--;
       }
@@ -150,7 +152,7 @@ public class Board<Piece extends BoardPiece> {
       List<BoardNode<Piece>> diagonal = new ArrayList<>();
       int i = row, j = n - 1;
       while (i < m && j >= 0) {
-        diagonal.add(new BoardNode<>(get(i, j), i, j));
+        diagonal.add(get(i, j));
         i++;
         j--;
       }
@@ -165,16 +167,16 @@ public class Board<Piece extends BoardPiece> {
     for (int row = 0; row < numberRow; row++) {
       stringBuilder.append("\n");
       for (int col = 0; col < numberColumn; col++) {
-        var piece = get(row, col);
-        if (piece.isEmpty()) {
+        var node = get(row, col);
+        if (node.piece().isEmpty()) {
           stringBuilder.append("n");
         } else if (row == newRow && col == newColumn) {
           stringBuilder.append(RED);
-          stringBuilder.append(piece.orElseThrow().view());
+          stringBuilder.append(node.piece().orElseThrow().view());
           stringBuilder.append(RESET);
         } else {
           stringBuilder.append(GREEN);
-          stringBuilder.append(piece.orElseThrow().view());
+          stringBuilder.append(node.piece().orElseThrow().view());
           stringBuilder.append(RESET);
         }
         stringBuilder.append(" ");

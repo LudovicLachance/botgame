@@ -51,7 +51,9 @@ public class ScoreBoardGenerator {
 
     log.info(stringBuilder.toString());
 
-    Files.writeString(Paths.get(filename), stringBuilder.toString());
+    if (filename != null) {
+      Files.writeString(Paths.get(filename), stringBuilder.toString());
+    }
   }
 
   public static List<? extends Class<? extends Bot>> getAllBots() {
@@ -71,5 +73,9 @@ public class ScoreBoardGenerator {
               });
         });
     return mapping;
+  }
+
+  public static void generate(Map<Bot, Integer> scoreboard) throws IOException {
+    generate(scoreboard, null);
   }
 }

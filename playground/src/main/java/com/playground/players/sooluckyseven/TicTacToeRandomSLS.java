@@ -1,6 +1,6 @@
 package com.playground.players.sooluckyseven;
 
-import com.botgame.general.BoardView;
+import com.botgame.general.board.Board;
 import com.botgame.tictactoe.Mark;
 import com.botgame.tictactoe.Move;
 import com.botgame.tictactoe.TictactoeBot;
@@ -23,7 +23,7 @@ public class TicTacToeRandomSLS implements TictactoeBot {
   }
 
   @Override
-  public Move turn(BoardView<Mark> board) {
+  public Move turn(Board<Mark> board) {
     var empty = board.getNodes()
         .stream().filter(node -> node.piece().isEmpty())
         .toList();

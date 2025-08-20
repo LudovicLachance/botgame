@@ -36,11 +36,10 @@ public class GamingRoom {
       String filename;
       if (args.length > 0) {
         filename = args[0];
+        ScoreBoardGenerator.generate(scoreboard, filename);
       } else {
-        filename = "./score/SCOREBOARD.md";
+        ScoreBoardGenerator.generate(scoreboard);
       }
-
-      ScoreBoardGenerator.generate(scoreboard, filename);
 
     } catch (Exception e) {
       log.error(e.getMessage(), e);

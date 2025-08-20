@@ -1,4 +1,4 @@
-package com.botgame.general;
+package com.botgame.general.board;
 
 import java.util.Optional;
 
