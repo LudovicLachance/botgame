@@ -9,6 +9,8 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +25,8 @@ public class ScoreBoardGenerator {
 
     StringBuilder stringBuilder = new StringBuilder("\n");
     stringBuilder.append("<h1>score board<sup><sup>&nbsp;Endless mode</sup></sup></h1>\n\n");
+
+    stringBuilder.append("%s\n".formatted(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME)));
 
     for (var bot : allBots) {
       stringBuilder.append("## The best %s\n\n".formatted(bot.getSimpleName()));

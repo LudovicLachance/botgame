@@ -32,7 +32,7 @@ Make sure your player is actually in the game room.
 
 Then make a merge request.
 
-### [Score Board](score/SCOREBOARD.md)
+### [Score Board](https://github.com/LudovicLachance/botgame/blob/score/score/SCOREBOARD.md)
 
 The score board will list every
 games and your position on branch merge.
