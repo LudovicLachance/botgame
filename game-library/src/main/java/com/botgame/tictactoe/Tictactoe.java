@@ -17,13 +17,13 @@ public class Tictactoe implements Game {
   private static final Logger log = LogManager.getLogger();
 
   private final Board<Mark> board = new Board<>(3, 3);
-  private final TictactoePlayer player1;
-  private final TictactoePlayer player2;
-  private final List<Player> winners = new ArrayList<>();
+  private final TictactoeBot bot1;
+  private final TictactoeBot bot2;
+  private final List<Bot> winners = new ArrayList<>();
 
-  public Tictactoe(TictactoePlayer player1, TictactoePlayer player2) {
-    this.player1 = player1;
-    this.player2 = player2;
+  public Tictactoe(TictactoeBot bot1, TictactoeBot bot2) {
+    this.bot1 = bot1;
+    this.bot2 = bot2;
   }
 
   public static boolean noMorePlaceToPlay(Board<Mark> board) {
@@ -31,56 +31,56 @@ public class Tictactoe implements Game {
         .stream().noneMatch(node -> node.piece().isEmpty());
   }
 
-  public static boolean winCondition(Board<Mark> board, List<Player> winners, TictactoePlayer player1, TictactoePlayer player2) {
+  public static boolean winCondition(Board<Mark> board, List<Bot> winners, TictactoeBot bot1, TictactoeBot bot2) {
     Supplier<Stream<List<BoardNode<Mark>>>> lines = () -> board.getLines()
         .stream()
         .filter(line -> line.size() >= 3);
 
-    var playerXWin = lines.get()
+    var botXWin = lines.get()
         .anyMatch(line -> line
             .stream()
             .map(BoardNode::piece)
             .allMatch(mark -> mark.isPresent() && mark.orElseThrow() == Mark.X));
-    var playerOWin = lines.get()
+    var botOWin = lines.get()
         .anyMatch(line -> line
             .stream()
             .map(BoardNode::piece)
             .allMatch(mark -> mark.isPresent() && mark.orElseThrow() == Mark.O));
 
-    if (playerXWin) {
-      winners.add(player1);
+    if (botXWin) {
+      winners.add(bot1);
     }
 
-    if (playerOWin) {
-      winners.add(player2);
+    if (botOWin) {
+      winners.add(bot2);
     }
 
-    return playerOWin || playerXWin;
+    return botOWin || botXWin;
   }
 
   @Override
-  public List<Player> start() {
-    player1.receive(Mark.X);
-    player2.receive(Mark.O);
+  public List<Bot> start() {
+    bot1.receive(Mark.X);
+    bot2.receive(Mark.O);
 
     while (true) {
       {
-        var playerPlayed = playerTurn(player1);
-        if (winCondition(board, winners, player1, player2) || noMorePlaceToPlay(board)) {
+        var botPlayed = botTurn(bot1);
+        if (winCondition(board, winners, bot1, bot2) || noMorePlaceToPlay(board)) {
           return winners;
         }
       }
       {
-        var playerPlayed = playerTurn(player2);
-        if (winCondition(board, winners, player1, player2) || noMorePlaceToPlay(board)) {
+        var botPlayed = botTurn(bot2);
+        if (winCondition(board, winners, bot1, bot2) || noMorePlaceToPlay(board)) {
           return winners;
         }
       }
     }
   }
 
-  private boolean playerTurn(TictactoePlayer player) {
-    var move = player.turn(new BoardView<>(board));
+  private boolean botTurn(TictactoeBot bot) {
+    var move = bot.turn(new BoardView<>(board));
     var moveIsDone = board.makeMove(move.mark(), move.row(), move.col());
     log.debug(board.show(move.row(), move.col()));
     return moveIsDone;
@@ -88,9 +88,9 @@ public class Tictactoe implements Game {
 
   public static class Builder extends GameBuilder {
     @Override
-    public List<Game> combinatory(List<Player> players) {
+    public List<Game> combinatory(List<Bot> bots) {
       List<Game> games = new ArrayList<>();
-      for (var combination : Combination.combine(filter(players, TictactoePlayer.class), 2)) {
+      for (var combination : Combination.combine(filter(bots, TictactoeBot.class), 2)) {
         games.add(new Tictactoe(combination.getFirst(), combination.getLast()));
         games.add(new Tictactoe(combination.getLast(), combination.getFirst()));
       }

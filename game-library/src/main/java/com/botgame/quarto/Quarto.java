@@ -12,12 +12,12 @@ import java.util.List;
 public class Quarto implements Game {
   private final Board<Tower> board = new Board<>(4, 4);
   private final List<Tower> towers = new ArrayList<>(16);
-  private final QuartoPlayer player1;
-  private final QuartoPlayer player2;
+  private final QuartoBot bot1;
+  private final QuartoBot bot2;
 
-  public Quarto(QuartoPlayer player1, QuartoPlayer player2) {
-    this.player1 = player1;
-    this.player2 = player2;
+  public Quarto(QuartoBot bot1, QuartoBot bot2) {
+    this.bot1 = bot1;
+    this.bot2 = bot2;
 
     for (Tower.Height height : List.of(Tower.Height.Short, Tower.Height.Tall)) {
       for (Tower.Color color : List.of(Tower.Color.Blue, Tower.Color.Red)) {
@@ -31,21 +31,21 @@ public class Quarto implements Game {
   }
 
   @Override
-  public List<Player> start() {
-    List<Player> winners = new ArrayList<>();
+  public List<Bot> start() {
+    List<Bot> winners = new ArrayList<>();
 
     while (true) {
       {
-        var playerPlayed = playerTurn(player1);
+        var botPlayed = botTurn(bot1);
         if (winCondition()) {
-          winners.add(player1);
+          winners.add(bot1);
           return winners;
         }
       }
       {
-        var playerPlayed = playerTurn(player2);
+        var botPlayed = botTurn(bot2);
         if (winCondition()) {
-          winners.add(player2);
+          winners.add(bot2);
           return winners;
         }
       }
@@ -56,8 +56,8 @@ public class Quarto implements Game {
     return true;
   }
 
-  private boolean playerTurn(QuartoPlayer player) {
-    var move = player.turn(new BoardView<>(board), List.copyOf(towers));
+  private boolean botTurn(QuartoBot bot) {
+    var move = bot.turn(new BoardView<>(board), List.copyOf(towers));
     var pieceExist = towers.remove(move.tower());
     if (!pieceExist) {
       return false;
@@ -68,9 +68,9 @@ public class Quarto implements Game {
 
   public static class Builder extends GameBuilder {
     @Override
-    public List<Game> combinatory(List<Player> players) {
+    public List<Game> combinatory(List<Bot> bots) {
       List<Game> games = new ArrayList<>();
-      for (var combination : Combination.combine(filter(players, QuartoPlayer.class), 2)) {
+      for (var combination : Combination.combine(filter(bots, QuartoBot.class), 2)) {
         games.add(new Quarto(combination.getFirst(), combination.getLast()));
       }
       return games;

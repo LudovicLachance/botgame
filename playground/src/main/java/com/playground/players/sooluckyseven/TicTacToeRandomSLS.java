@@ -3,12 +3,12 @@ package com.playground.players.sooluckyseven;
 import com.botgame.general.BoardView;
 import com.botgame.tictactoe.Mark;
 import com.botgame.tictactoe.Move;
-import com.botgame.tictactoe.TictactoePlayer;
+import com.botgame.tictactoe.TictactoeBot;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class TicTacToeRandomSLS implements TictactoePlayer {
+public class TicTacToeRandomSLS implements TictactoeBot {
   private final String name;
   Mark mark;
   Random rng = ThreadLocalRandom.current();

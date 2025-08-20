@@ -1,9 +1,9 @@
 package com.botgame.tictactoe;
 
 import com.botgame.general.BoardView;
-import com.botgame.general.Player;
+import com.botgame.general.Bot;
 
-public interface TictactoePlayer extends Player {
+public interface TictactoeBot extends Bot {
   void receive(Mark mark);
 
   Move turn(BoardView<Mark> board);

@@ -1,5 +1,5 @@
 package com.botgame.general;
 
-public interface Player {
+public interface Bot {
   String getName();
 }

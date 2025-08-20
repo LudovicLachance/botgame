@@ -23,8 +23,8 @@
 ### Instruction to create a bot and play
 
 To enter the endless tournament, create a bot 
-implementing the game player you want to play and
-add it to the player list in the game room.
+implementing the game bot you want to play and
+add it to the bot list in the game room.
 
 Then make a merge request.
 

@@ -1,10 +1,10 @@
 package com.botgame.quarto;
 
 import com.botgame.general.BoardView;
-import com.botgame.general.Player;
+import com.botgame.general.Bot;
 
 import java.util.List;
 
-public interface QuartoPlayer extends Player {
+public interface QuartoBot extends Bot {
   Move turn(BoardView<Tower> board, List<Tower> towerToPlay);
 }

@@ -1,11 +1,12 @@
 package com.playground;
 
+import com.botgame.Player;
 import com.botgame.Tournament;
+import com.botgame.general.Bot;
 import com.botgame.general.GameBuilder;
-import com.botgame.general.Player;
 import com.botgame.quarto.Quarto;
 import com.botgame.tictactoe.Tictactoe;
-import com.playground.players.sooluckyseven.TicTacToeRandomSLS;
+import com.playground.players.sooluckyseven.SooLuckySeven;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,12 +17,12 @@ public class GamingRoom {
 
   public static void main(String[] args) {
     try {
-      Map<Player, Integer> totalScores = new HashMap<>();
+      Map<Bot, Integer> totalScores = new HashMap<>();
       List<GameBuilder> gameBuilders = getGameBuilders();
-      List<Player> players = getPlayers();
+      List<Bot> bots = getBots();
       for (int i = 0; i < 1000; i++) {
         for (GameBuilder gameBuilder : gameBuilders) {
-          Tournament tournament = new Tournament(players, gameBuilder);
+          Tournament tournament = new Tournament(bots, gameBuilder);
           tournament.start().forEach((key, value) ->
               totalScores.merge(key, value, Integer::sum)
           );
@@ -29,7 +30,7 @@ public class GamingRoom {
       }
 
       var scoreboard = totalScores.entrySet()
-          .stream().sorted(Comparator.comparingInt(Map.Entry<Player, Integer>::getValue).reversed())
+          .stream().sorted(Comparator.comparingInt(Map.Entry<Bot, Integer>::getValue).reversed())
           .toList();
       for (var entry : scoreboard) {
         log.info("%s %s".formatted(entry.getKey().getName(), entry.getValue()));
@@ -47,14 +48,17 @@ public class GamingRoom {
     return gameBuilders;
   }
 
+  public static List<Bot> getBots() {
+    return getPlayers()
+        .stream()
+        .map(Player::getBots)
+        .flatMap(List::stream)
+        .toList();
+  }
+
   public static List<Player> getPlayers() {
-    List<Player> players = new ArrayList<>();
-    players.add(new TicTacToeRandomSLS(String.valueOf(0x0000)));
-    players.add(new TicTacToeRandomSLS(String.valueOf(0x0001)));
-    players.add(new TicTacToeRandomSLS(String.valueOf(0x0002)));
-    players.add(new TicTacToeRandomSLS(String.valueOf(0x0003)));
-    players.add(new TicTacToeRandomSLS(String.valueOf(0x0004)));
-    players.add(new TicTacToeRandomSLS(String.valueOf(0x0005)));
-    return players;
+    List<Player> bots = new ArrayList<>();
+    bots.add(new SooLuckySeven());
+    return bots;
   }
 }
