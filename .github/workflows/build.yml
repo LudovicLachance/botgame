@@ -32,7 +32,7 @@ jobs:
           git fetch origin main
       - name: Rest score to main
         run: |
-          it reset --hard origin/main
+          git reset --hard origin/main
       - name: Merge main
         run: |
           git merge origin/main --no-edit
