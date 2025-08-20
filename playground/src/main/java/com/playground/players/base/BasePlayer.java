@@ -16,6 +16,7 @@ public class BasePlayer implements Player {
   public List<Bot> getBots() {
     List<Bot> bots = new ArrayList<>();
     bots.add(new TicTacToeRandom());
+    bots.add(new OrderChaosRandom());
     return bots;
   }
 }

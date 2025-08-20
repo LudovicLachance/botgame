@@ -18,6 +18,7 @@ games and your position on branch pull.
 
 ### Game implementing
 
+- [Order and Chaos](https://en.wikipedia.org/wiki/Order_and_Chaos)
 - [Quarto](https://en.wikipedia.org/wiki/Quarto_(board_game))
 
 ### Game to implement

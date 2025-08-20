@@ -84,8 +84,8 @@ public class Tictactoe implements Game {
 
   private boolean botTurn(TictactoeBot bot) {
     var move = bot.turn(new BoardView<>(boardRaw));
-    var moveIsDone = boardRaw.makeMove(move.mark(), move.row(), move.col());
-    log.debug(boardRaw.show(move.row(), move.col()));
+    var moveIsDone = boardRaw.makeMove(move.mark(), move.row(), move.column());
+    log.debug(boardRaw.show(move.row(), move.column()));
     return moveIsDone;
   }
 

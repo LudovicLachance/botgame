@@ -1,25 +1,26 @@
-package com.playground.players.sooluckyseven;
+package com.playground.players.base;
 
 import com.botgame.general.board.Board;
-import com.botgame.tictactoe.Mark;
-import com.botgame.tictactoe.Move;
-import com.botgame.tictactoe.TictactoeBot;
+import com.botgame.orderchaos.Mark;
+import com.botgame.orderchaos.Move;
+import com.botgame.orderchaos.OrderChaosBot;
+import com.botgame.orderchaos.Role;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class TicTacToeRandomSLS implements TictactoeBot {
-  Mark mark;
+public class OrderChaosRandom implements OrderChaosBot {
+  Role role;
   Random rng = ThreadLocalRandom.current();
 
   @Override
   public String getName() {
-    return "TicTacToeRandomSLS";
+    return "OrderChaosRandom";
   }
 
   @Override
-  public void receive(Mark mark) {
-    this.mark = mark;
+  public void receive(Role role) {
+    this.role = role;
   }
 
   @Override
@@ -29,6 +30,7 @@ public class TicTacToeRandomSLS implements TictactoeBot {
         .toList();
     var index = rng.nextInt(0, empty.size());
     var node = empty.get(index);
+    Mark mark = rng.nextBoolean() ? Mark.O : Mark.X;
     return new Move(mark, node.row(), node.column());
   }
 }
