@@ -5,17 +5,16 @@
 > Do you like bots?<br/>
 > What about combining the two?<br/>
 
-### Botting community playroom
+<h2>Botting community playroom</h2>
 
-### List of games
+<h3>List of games</h3>
 
 - Tic Tac Toe
 - Quarto
 
-### Game to implement
+<h3>Game to implement</h3>
 
 - Tank game
 - Any board games
 
-
-### Instruction to create a bot and play
+<h3>Instruction to create a bot and play</h3>
