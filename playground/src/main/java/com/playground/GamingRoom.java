@@ -57,8 +57,8 @@ public class GamingRoom {
   }
 
   public static List<Player> getPlayers() {
-    List<Player> bots = new ArrayList<>();
-    bots.add(new SooLuckySeven());
-    return bots;
+    List<Player> players = new ArrayList<>();
+    players.add(new SooLuckySeven());
+    return players;
   }
 }
