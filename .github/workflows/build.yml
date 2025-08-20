@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Set up Git
         run: |
@@ -31,6 +33,11 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: score
+
       - name: Run the JAR to generate file
         run: |
           java -jar playground/build/libs/playground-all.jar ./score/SCOREBOARD.md
@@ -39,8 +46,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git fetch origin score
-          git checkout score
           git merge main --no-edit
           git add score/SCOREBOARD.md
           git commit -m "Add score/SCOREBOARD.md from Github CI" || echo "No changes to commit"
