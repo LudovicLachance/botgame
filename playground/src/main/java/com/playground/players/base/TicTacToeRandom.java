@@ -13,6 +13,11 @@ public class TicTacToeRandom implements TictactoeBot {
   Random rng = ThreadLocalRandom.current();
 
   @Override
+  public String getName() {
+    return "TicTacToeRandom";
+  }
+
+  @Override
   public void receive(Mark mark) {
     this.mark = mark;
   }
@@ -25,10 +30,5 @@ public class TicTacToeRandom implements TictactoeBot {
     var index = rng.nextInt(0, empty.size());
     var node = empty.get(index);
     return new Move(mark, node.row(), node.column());
-  }
-
-  @Override
-  public String getName() {
-    return "TicTacToeRandom";
   }
 }

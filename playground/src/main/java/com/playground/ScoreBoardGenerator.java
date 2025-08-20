@@ -29,9 +29,9 @@ public class ScoreBoardGenerator {
     stringBuilder.append("%s\n".formatted(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME)));
 
     for (var bot : allBots) {
-      stringBuilder.append("## The best %s\n\n".formatted(bot.getSimpleName()));
-      stringBuilder.append("|Player|Bot|Score|\n");
-      stringBuilder.append("|-|-|-|\n");
+      stringBuilder.append("## Top Scoreboard for %s\n\n".formatted(bot.getSimpleName()));
+      stringBuilder.append("|#|Player|Bot|Score|\n");
+      stringBuilder.append("|-|-|-|-|\n");
 
       var scoreList = scoreboard.entrySet()
           .stream()
@@ -39,12 +39,12 @@ public class ScoreBoardGenerator {
           .sorted(Comparator.comparingInt(Map.Entry<Bot, Integer>::getValue).reversed())
           .toList();
 
-
+      var n = 1;
       for (var entry : scoreList) {
         var botName = entry.getKey().getName();
         var playerName = playerMapping.get(botName).getName();
         var score = entry.getValue();
-        stringBuilder.append("|%s|%s|%s|\n".formatted(playerName, botName, score));
+        stringBuilder.append("|%s|%s|%s|%s|\n".formatted(n++, playerName, botName, score));
       }
       stringBuilder.append("\n");
     }
