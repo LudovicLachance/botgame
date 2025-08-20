@@ -32,3 +32,5 @@ Then make a merge request.
 
 The score board will list every
 games and your position on branch merge.
+
+[Score Board](score/SCOREBOARD.md)
