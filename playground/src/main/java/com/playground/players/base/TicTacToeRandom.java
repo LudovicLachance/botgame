@@ -1,4 +1,4 @@
-package com.playground.players.sooluckyseven;
+package com.playground.players.base;
 
 import com.botgame.general.board.Board;
 import com.botgame.tictactoe.Mark;
@@ -8,7 +8,7 @@ import com.botgame.tictactoe.TictactoeBot;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class TicTacToeRandomSLS implements TictactoeBot {
+public class TicTacToeRandom implements TictactoeBot {
   Mark mark;
   Random rng = ThreadLocalRandom.current();
 
@@ -29,6 +29,6 @@ public class TicTacToeRandomSLS implements TictactoeBot {
 
   @Override
   public String getName() {
-    return "TicTacToeRandomSLS";
+    return "TicTacToeRandom";
   }
 }

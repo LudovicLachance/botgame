@@ -1,4 +1,4 @@
-package com.playground.players.sooluckyseven;
+package com.playground.players.base;
 
 import com.botgame.Player;
 import com.botgame.general.Bot;
@@ -6,16 +6,16 @@ import com.botgame.general.Bot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SooLuckySeven implements Player {
+public class BasePlayer implements Player {
   @Override
   public String getName() {
-    return "SooLuckySeven";
+    return "BasePlayer";
   }
 
   @Override
   public List<Bot> getBots() {
     List<Bot> bots = new ArrayList<>();
-    bots.add(new TicTacToeRandomSLS());
+    bots.add(new TicTacToeRandom());
     return bots;
   }
 }
