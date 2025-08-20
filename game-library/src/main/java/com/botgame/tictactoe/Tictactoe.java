@@ -1,7 +1,7 @@
-package com.autogame.tictactoe;
+package com.botgame.tictactoe;
 
-import com.autogame.Combination;
-import com.autogame.general.*;
+import com.botgame.Combination;
+import com.botgame.general.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

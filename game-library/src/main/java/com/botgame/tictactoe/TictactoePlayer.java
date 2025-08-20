@@ -1,7 +1,7 @@
-package com.autogame.tictactoe;
+package com.botgame.tictactoe;
 
-import com.autogame.general.BoardView;
-import com.autogame.general.Player;
+import com.botgame.general.BoardView;
+import com.botgame.general.Player;
 
 public interface TictactoePlayer extends Player {
   void receive(Mark mark);

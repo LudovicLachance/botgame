@@ -1,9 +1,9 @@
 package com.playground.players.sooluckyseven;
 
-import com.autogame.general.BoardView;
-import com.autogame.tictactoe.Mark;
-import com.autogame.tictactoe.Move;
-import com.autogame.tictactoe.TictactoePlayer;
+import com.botgame.general.BoardView;
+import com.botgame.tictactoe.Mark;
+import com.botgame.tictactoe.Move;
+import com.botgame.tictactoe.TictactoePlayer;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;

@@ -1,6 +1,6 @@
-package com.autogame.quarto;
+package com.botgame.quarto;
 
-import com.autogame.general.BoardPiece;
+import com.botgame.general.BoardPiece;
 
 public record Tower(Height height, Color color, Shape shape, Interior interior) implements BoardPiece {
   @Override

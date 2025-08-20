@@ -1,7 +1,7 @@
-package com.autogame.quarto;
+package com.botgame.quarto;
 
-import com.autogame.general.BoardView;
-import com.autogame.general.Player;
+import com.botgame.general.BoardView;
+import com.botgame.general.Player;
 
 import java.util.List;
 

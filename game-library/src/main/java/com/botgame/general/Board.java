@@ -1,4 +1,4 @@
-package com.autogame.general;
+package com.botgame.general;
 
 import java.util.ArrayList;
 import java.util.List;

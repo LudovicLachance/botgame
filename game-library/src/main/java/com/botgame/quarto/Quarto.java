@@ -1,7 +1,7 @@
-package com.autogame.quarto;
+package com.botgame.quarto;
 
-import com.autogame.Combination;
-import com.autogame.general.*;
+import com.botgame.Combination;
+import com.botgame.general.*;
 
 import java.util.ArrayList;
 import java.util.List;

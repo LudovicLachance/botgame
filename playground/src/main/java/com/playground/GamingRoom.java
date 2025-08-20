@@ -1,10 +1,10 @@
 package com.playground;
 
-import com.autogame.Tournament;
-import com.autogame.general.GameBuilder;
-import com.autogame.general.Player;
-import com.autogame.quarto.Quarto;
-import com.autogame.tictactoe.Tictactoe;
+import com.botgame.Tournament;
+import com.botgame.general.GameBuilder;
+import com.botgame.general.Player;
+import com.botgame.quarto.Quarto;
+import com.botgame.tictactoe.Tictactoe;
 import com.playground.players.sooluckyseven.TicTacToeRandomSLS;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

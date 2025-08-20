@@ -1,6 +1,6 @@
-package com.autogame.tictactoe;
+package com.botgame.tictactoe;
 
-import com.autogame.general.BoardPiece;
+import com.botgame.general.BoardPiece;
 
 public enum Mark implements BoardPiece {
   X, O;

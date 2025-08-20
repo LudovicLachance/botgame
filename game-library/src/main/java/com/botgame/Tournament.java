@@ -1,8 +1,8 @@
-package com.autogame;
+package com.botgame;
 
-import com.autogame.general.Game;
-import com.autogame.general.GameBuilder;
-import com.autogame.general.Player;
+import com.botgame.general.Game;
+import com.botgame.general.GameBuilder;
+import com.botgame.general.Player;
 
 import java.util.HashMap;
 import java.util.List;
