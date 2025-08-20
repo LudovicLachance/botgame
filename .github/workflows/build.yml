@@ -27,16 +27,20 @@ jobs:
         with:
           distribution: "temurin"
           java-version: "24"
+      - name: Fetch main
+        run: |
+          git fetch origin main
       - name: Merge main
         run: |
-          git merge main --no-edit
+          git merge origin/main --no-edit
       - name: Build with Gradle
-        run: ./gradlew build
+        run: |
+          ./gradlew build
       - name: Run the JAR to generate file
         run: |
           java -jar playground/build/libs/playground-all.jar ./score/SCOREBOARD.md
       - name: Commit generated file
         run: |
           git add score/SCOREBOARD.md
-          git commit -m "Add score/SCOREBOARD.md from Github CI" || echo "No changes to commit"
+          git commit -m "Merge main and add score/SCOREBOARD.md from Github CI" || echo "No changes to commit"
           git push -f
