@@ -5,8 +5,8 @@
 
 |Player|Bot|Score|
 |-|-|-|
-|-|TicTacToeRandom: SLS|867|
-|-|TicTacToeRandom: SLS|860|
+|SooLuckySeven|TicTacToeRandom: SLS|918|
+|SooLuckySeven|TicTacToeRandom: SLS|827|
 
 ## The best QuartoBot
 
