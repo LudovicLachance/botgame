@@ -65,7 +65,7 @@ public class Quarto implements Game {
       return false;
     }
 
-    return boardRaw.makeMove(move.tower(), move.row(), move.col());
+    return boardRaw.makeMove(move.tower(), move.row(), move.column());
   }
 
   public static class Builder extends GameBuilder {

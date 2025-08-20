@@ -16,6 +16,7 @@ public class SooLuckySeven implements Player {
   public List<Bot> getBots() {
     List<Bot> bots = new ArrayList<>();
     bots.add(new TicTacToeRandomSLS());
+    bots.add(new InsanePlayer());
     return bots;
   }
 }

@@ -4,6 +4,7 @@ import com.botgame.BotTournament;
 import com.botgame.Player;
 import com.botgame.general.Bot;
 import com.botgame.general.GameBuilder;
+import com.botgame.orderchaos.OrderChaos;
 import com.botgame.quarto.Quarto;
 import com.botgame.tictactoe.Tictactoe;
 import com.playground.players.base.BasePlayer;
@@ -50,7 +51,8 @@ public class GamingRoom {
   public static List<GameBuilder> getGameBuilders() {
     List<GameBuilder> gameBuilders = new ArrayList<>();
     gameBuilders.add(new Tictactoe.Builder());
-    gameBuilders.add(new Quarto.Builder());
+//    gameBuilders.add(new Quarto.Builder());
+    gameBuilders.add(new OrderChaos.Builder());
     return gameBuilders;
   }
 
