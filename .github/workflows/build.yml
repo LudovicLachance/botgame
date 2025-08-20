@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Git
         run: |
@@ -23,7 +23,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Set up JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: "temurin"
           java-version: "24"
@@ -39,7 +39,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin score
           git checkout score
+          git merge main --no-edit
           git add score/SCOREBOARD.md
           git commit -m "Add score/SCOREBOARD.md from Github CI" || echo "No changes to commit"
           git push -f
