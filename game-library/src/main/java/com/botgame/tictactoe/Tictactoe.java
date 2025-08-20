@@ -96,5 +96,10 @@ public class Tictactoe implements Game {
       }
       return games;
     }
+
+    @Override
+    public Class<? extends Bot> getBot() {
+      return TictactoeBot.class;
+    }
   }
 }

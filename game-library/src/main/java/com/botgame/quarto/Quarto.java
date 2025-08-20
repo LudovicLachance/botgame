@@ -75,5 +75,10 @@ public class Quarto implements Game {
       }
       return games;
     }
+
+    @Override
+    public Class<? extends Bot> getBot() {
+      return QuartoBot.class;
+    }
   }
 }

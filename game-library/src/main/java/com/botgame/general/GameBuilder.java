@@ -12,4 +12,6 @@ public abstract class GameBuilder {
         .map(type::cast)
         .toList();
   }
+
+  public abstract Class<? extends Bot> getBot();
 }

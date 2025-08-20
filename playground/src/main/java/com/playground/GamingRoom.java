@@ -10,31 +10,37 @@ import com.playground.players.sooluckyseven.SooLuckySeven;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class GamingRoom {
   private static final Logger log = LogManager.getLogger();
 
   public static void main(String[] args) {
+
     try {
-      Map<Bot, Integer> totalScores = new HashMap<>();
+      Map<Bot, Integer> scoreboard = new HashMap<>();
       List<GameBuilder> gameBuilders = getGameBuilders();
       List<Bot> bots = getBots();
       for (int i = 0; i < 1000; i++) {
         for (GameBuilder gameBuilder : gameBuilders) {
           Tournament tournament = new Tournament(bots, gameBuilder);
           tournament.start().forEach((key, value) ->
-              totalScores.merge(key, value, Integer::sum)
+              scoreboard.merge(key, value, Integer::sum)
           );
         }
       }
 
-      var scoreboard = totalScores.entrySet()
-          .stream().sorted(Comparator.comparingInt(Map.Entry<Bot, Integer>::getValue).reversed())
-          .toList();
-      for (var entry : scoreboard) {
-        log.info("%s %s".formatted(entry.getKey().getName(), entry.getValue()));
+      String filename;
+      if (args.length > 0) {
+        filename = args[0];
+      } else {
+        filename = "./score/SCOREBOARD.md";
       }
+
+      ScoreBoardGenerator.generate(scoreboard, filename);
 
     } catch (Exception e) {
       log.error(e.getMessage(), e);

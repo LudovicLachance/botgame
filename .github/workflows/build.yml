@@ -33,7 +33,7 @@ jobs:
 
       - name: Run the JAR to generate file
         run: |
-          java -jar playground/build/libs/playground-all.jar --output score/SCOREBOARD.md
+          java -jar playground/build/libs/playground-all.jar ./score/SCOREBOARD.md
 
       - name: Commit generated file
         run: |

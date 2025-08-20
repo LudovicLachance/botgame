@@ -11,6 +11,9 @@ repositories {
 
 dependencies {
     implementation(project(":game-library"))
+
+    // https://mvnrepository.com/artifact/commons-cli/commons-cli
+    implementation("commons-cli:commons-cli:1.9.0")
 }
 
 java {
