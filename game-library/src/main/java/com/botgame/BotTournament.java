@@ -8,11 +8,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Tournament {
+public class BotTournament {
   private final List<Bot> bots;
   private final GameBuilder gameBuilder;
 
-  public Tournament(List<Bot> bots, GameBuilder gameBuilder) {
+  public BotTournament(List<Bot> bots, GameBuilder gameBuilder) {
     this.bots = bots;
     this.gameBuilder = gameBuilder;
   }
