@@ -7,6 +7,11 @@
 
 ## Botting community playroom
 
+### [Score Board](https://github.com/LudovicLachance/botgame/blob/score/score/SCOREBOARD.md)
+
+The score board will list every
+games and your position on branch pull.
+
 ### List of games
 
 - [Tic Tac Toe](https://en.wikipedia.org/wiki/Tic-tac-toe)
@@ -54,16 +59,12 @@
 ### Instruction to create a bot and play
 
 To enter the endless tournament, you must first
-create a player with a name.
+implement a player with a name.
 
-After, you can create a bot implementing the game bot
-you want to play and add it to your player bot list.
+You can then implement a bot for each of the game bot
+you want to participate in. Do not forget to add your new bot 
+your player bot list.
 
-Make sure your player is actually in the game room.
+Make sure your the game room have your player in it.
 
-Then make a merge request.
-
-### [Score Board](https://github.com/LudovicLachance/botgame/blob/score/score/SCOREBOARD.md)
-
-The score board will list every
-games and your position on branch merge.
+Then make a pull request to start a tournament.
