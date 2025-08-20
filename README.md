@@ -8,12 +8,15 @@
 <h2>Botting community playroom</h2>
 
 <h3>List of games</h3>
+
 - Tic Tac Toe
 
 <h3>Game implementing</h3>
+
 - Quarto
 
 <h3>Game to implement</h3>
+
 - Tank game
 - Any board games
 
