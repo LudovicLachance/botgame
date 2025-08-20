@@ -27,3 +27,8 @@ implementing the game player you want to play and
 add it to the player list in the game room.
 
 Then make a merge request.
+
+<h3>Score Board</h3>
+
+The score board will list every
+games and your position on branch merge.
