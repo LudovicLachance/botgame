@@ -8,7 +8,7 @@ import com.botgame.tictactoe.TictactoeBot;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class TicTacToeRandomSLS implements TictactoeBot {
+public class TicTacToeRandomV1 implements TictactoeBot {
   Mark mark;
   Random rng = ThreadLocalRandom.current();
 

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 
-public class InsanePlayer implements OrderChaosBot {
+public class NotSoInsanePlayerV1 implements OrderChaosBot {
   private static final int BOARD_SIZE = 6;
   Role role;
 
