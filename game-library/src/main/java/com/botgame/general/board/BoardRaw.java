@@ -29,14 +29,32 @@ public class BoardRaw<Piece extends BoardPiece> implements Board<Piece> {
 
   @Override
   public BoardNode<Piece> get(int row, int column) {
-    boolean rowTest = row < 0 || row >= numberRow;
-    boolean columnTest = column < 0 || column >= numberColumn;
+    if (row >= numberRow) {
+      row = row % numberRow;
+    }
 
-    if (rowTest || columnTest) {
-      return new BoardNode<>(Optional.empty(), row, column);
+    if (column >= numberColumn) {
+      column = column % numberColumn;
+    }
+
+    if (row <= -numberRow) {
+      row = row % -numberRow;
+    }
+
+    if (column <= -numberColumn) {
+      column = column % -numberColumn;
+    }
+
+    if (row < 0) {
+      row += numberRow;
+    }
+
+    if (column < 0) {
+      column += numberColumn;
     }
 
     var pos = row * numberColumn + column;
+
     Piece boardPiece = boardPieces.get(pos);
 
     if (boardPiece == null) {
@@ -92,13 +110,13 @@ public class BoardRaw<Piece extends BoardPiece> implements Board<Piece> {
       lines.add(vLine);
     }
 
-    lines.addAll(getPrimaryDiagonals());
-    lines.addAll(getSecondaryDiagonals());
+    lines.addAll(getDiagonals(this));
+    lines.addAll(getDiagonals(new RotatedBoard<>(this)));
 
     return lines;
   }
 
-  private List<List<BoardNode<Piece>>> getPrimaryDiagonals() {
+  private List<List<BoardNode<Piece>>> getDiagonals(Board<Piece> board) {
     int m = numberRow;
     int n = numberColumn;
     List<List<BoardNode<Piece>>> diagonals = new ArrayList<>();
@@ -108,7 +126,7 @@ public class BoardRaw<Piece extends BoardPiece> implements Board<Piece> {
       List<BoardNode<Piece>> diagonal = new ArrayList<>();
       int i = 0, j = col;
       while (i < m && j < n) {
-        diagonal.add(get(i, j));
+        diagonal.add(board.get(i, j));
         i++;
         j++;
       }
@@ -120,41 +138,9 @@ public class BoardRaw<Piece extends BoardPiece> implements Board<Piece> {
       List<BoardNode<Piece>> diagonal = new ArrayList<>();
       int i = row, j = 0;
       while (i < m && j < n) {
-        diagonal.add(get(i, j));
+        diagonal.add(board.get(i, j));
         i++;
         j++;
-      }
-      diagonals.add(diagonal);
-    }
-
-    return diagonals;
-  }
-
-  private List<List<BoardNode<Piece>>> getSecondaryDiagonals() {
-    int m = numberRow;
-    int n = numberColumn;
-    List<List<BoardNode<Piece>>> diagonals = new ArrayList<>();
-
-    // Start from each element in the first row
-    for (int col = 0; col < n; col++) {
-      List<BoardNode<Piece>> diagonal = new ArrayList<>();
-      int i = 0, j = col;
-      while (i < m && j >= 0) {
-        diagonal.add(get(i, j));
-        i++;
-        j--;
-      }
-      diagonals.add(diagonal);
-    }
-
-    // Start from each element in the last column (except [0][n-1], already covered)
-    for (int row = 1; row < m; row++) {
-      List<BoardNode<Piece>> diagonal = new ArrayList<>();
-      int i = row, j = n - 1;
-      while (i < m && j >= 0) {
-        diagonal.add(get(i, j));
-        i++;
-        j--;
       }
       diagonals.add(diagonal);
     }

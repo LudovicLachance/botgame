@@ -1,7 +1,7 @@
 package com.playground;
 
+import com.botgame.BotTournament;
 import com.botgame.Player;
-import com.botgame.Tournament;
 import com.botgame.general.Bot;
 import com.botgame.general.GameBuilder;
 import com.botgame.quarto.Quarto;
@@ -26,8 +26,8 @@ public class GamingRoom {
       List<Bot> bots = getBots();
       for (int i = 0; i < 1000; i++) {
         for (GameBuilder gameBuilder : gameBuilders) {
-          Tournament tournament = new Tournament(bots, gameBuilder);
-          tournament.start().forEach((key, value) ->
+          BotTournament botTournament = new BotTournament(bots, gameBuilder);
+          botTournament.start().forEach((key, value) ->
               scoreboard.merge(key, value, Integer::sum)
           );
         }
